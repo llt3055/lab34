@@ -19,9 +19,12 @@ public:
     // Adjacency list
     vector<vector<Pair>> adjList;
 
+    vector<string> nodeNames;
+
     // Constructor
-    Graph(vector<Edge> const &edges, int N) {
+    Graph(vector<Edge> const &edges, int N, vector<string> names) {
         adjList.resize(N);
+        nodeNames = names;
         
     // Build an undirected graph (add edges in both directions)
         for (auto &edge: edges) {
