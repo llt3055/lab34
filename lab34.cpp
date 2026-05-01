@@ -8,7 +8,7 @@ using namespace std;
 
 // Edge structure from the lecture notes
 struct Edge {
-    int src, des, weight;
+    int src, dest, weight;
 };
 
 typedef pair<int, int> Pair;
@@ -44,16 +44,23 @@ public:
         }
     }
 
+
+    
     // DFS (Depth-First Search) - using a Stack
     void DFS(int start) {
         vector<bool> visited(adjList.size(), false);
+        stack<int> s;
         
-        if (!visited[curr]) {
-                visited[curr] = false;
+        s.push(start);
+        cout << "DFS starting from vertex " << start << ":\n";
 
         while (!s.empty()) {
             int curr = s.top();
             s.pop();
+
+            if (!visited[curr]) {
+                cout << curr << " ";
+                visited[curr] = true;
 
                 // Push unvisited neighbors onto the stack
                 for (Pair v : adjList[curr]) {
@@ -66,4 +73,49 @@ public:
         cout << endl;
     }
 
+    // BFS (Breadth-First Search) - using a Queue
+    void BFS(int start) {
+        vector<bool> visited(adjList.size(), false);
+        queue<int> q;
+
+        visited[start] = true;
+        q.push(start);
+
+        cout << "BFS starting from vertex " << start << ":\n";
+        
+        while (!q.empty()) {
+            int curr = q.front();
+            q.pop();
+            cout << curr << " ";
+
+            // Enqueue unvisited neighbors
+            for (Pair v : adjList[curr]) {
+                if (!visited[v.first]) {
+                    visited[v.first] = true;
+                    q.push(v.first);
+                }
+            }
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    // Initial graph data provided in the lecture notes
+    vector<Edge> edges = {
+        {0,1,12}, {0,2,8}, {0,3,21}, {2,3,6}, 
+        {2,6,2}, {5,6,6}, {4,5,9}, {2,4,4}, {2,5,5}
+    };
+    
+    // The initial graph has 7 nodes (0 to 6)
+    int N = 7;
+    Graph graph(edges, N);
+
+    // Execute the functions required for Step 1
+    graph.printGraph();
+    graph.DFS(0);
+    graph.BFS(0);
+
+    return 0;
+}
    
