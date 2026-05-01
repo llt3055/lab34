@@ -43,11 +43,11 @@ public:
         cout << "Data Center Network Topology:\n";
         cout << "=================================\n";
         for (int i = 0; i < adjList.size(); i++) {
-            cout << i << " --> ";
+            cout << "Node " << i << " (" << nodeNames[i] << ") connects to:\n";
             for (Pair v: adjList[i]) {
-                cout << "(" << v.first << ", " << v.second << ") ";
+                cout << "  -> Node " << v.first << " (" << nodeNames[v.first] 
+                     << ") with latency " << v.second << " ms\n";
             }
-            cout << endl;
         }
     }
 
@@ -57,14 +57,16 @@ public:
         stack<int> s;
         
         s.push(start);
-        cout << "DFS starting from vertex " << start << ":\n";
+        cout << "\nDFS (Deep Node Audit) starting from " << nodeNames[start] << ":\n";
+        cout << "Purpose: Security audit traversing as deep into the network as possible.\n";
+        cout << "-----------------------------------------------------------------------\n";
 
         while (!s.empty()) {
             int curr = s.top();
             s.pop();
 
             if (!visited[curr]) {
-                cout << curr << " ";
+                cout << "Auditing: Node " << curr << " (" << nodeNames[curr] << ")\n";
                 visited[curr] = true;
 
                 // Push unvisited neighbors onto the stack
@@ -86,12 +88,14 @@ public:
         visited[start] = true;
         q.push(start);
 
-        cout << "BFS starting from vertex " << start << ":\n";
+        cout << "\nBFS (Network Flood Trace) starting from " << nodeNames[start] << ":\n";
+        cout << "Purpose: Tracing localized data spread layer by layer.\n";
+        cout << "-----------------------------------------------------------------------\n";
         
         while (!q.empty()) {
             int curr = q.front();
             q.pop();
-            cout << curr << " ";
+            cout << "Tracing: Node " << curr << " (" << nodeNames[curr] << ")\n";
 
             // Enqueue unvisited neighbors
             for (Pair v : adjList[curr]) {
@@ -103,7 +107,20 @@ public:
         }
         cout << endl;
     }
-};
+
+
+
+    void calculateShortestPaths(int start) {
+        priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
+        
+        // Initialize distances to all nodes as infinite
+        vector<int> dist(adjList.size(), numeric_limits<int>::max());
+
+        // Insert source itself in priority queue and initialize its distance as 0
+        pq.push(make_pair(0, start));
+        dist[start] = 0;
+
+    }
 
 int main() {
     // Real-world application: Cloud Data Center Network
