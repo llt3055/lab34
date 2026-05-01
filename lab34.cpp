@@ -229,11 +229,11 @@ int main() {
         cout << "Enter your choice: ";
 
         // Input validation to prevent infinite loops if a user enters a letter instead of a number
-        if ((cin >> choice)) {
+        if (!(cin >> choice)) {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), );
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input. Please enter a number.";
-
+            continue;
         }
 
         switch (choice) {
@@ -258,7 +258,7 @@ int main() {
             default:
                 cout << "Invalid choice. Please try again.\n";
         }
-    } while (choice = 0);
+    } while (choice != 0);
 
     return 0;
 }
