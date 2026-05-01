@@ -3,6 +3,8 @@
 #include <vector>
 #include <queue>
 #include <stack>
+#include <string>
+#include <limits>
 
 using namespace std;
 
@@ -18,7 +20,7 @@ class Graph {
 public:
     // Adjacency list
     vector<vector<Pair>> adjList;
-
+    // Node names for the real-world application
     vector<string> nodeNames;
 
     // Constructor
@@ -38,7 +40,8 @@ public:
 
     // Print the adjacency list (matches the assignment's Sample Output format)
     void printGraph() {
-        cout << "Graph's adjacency list:\n";
+        cout << "Data Center Network Topology:\n";
+        cout << "=================================\n";
         for (int i = 0; i < adjList.size(); i++) {
             cout << i << " --> ";
             for (Pair v: adjList[i]) {
