@@ -148,6 +148,48 @@ public:
     }
 };
 
+    // Step 5: Minimum Spanning Tree (Prim's Algorithm)
+    void findMST() {
+        // Priority queue to select the edge with minimum weight
+        priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
+        
+        vector<int> key(adjList.size(), numeric_limits<int>::max());
+
+
+
+        cout << "\nMinimum Spanning Tree edges:\n";
+        
+        while (!pq.empty()) {
+            int u = pq.top().second;
+            pq.pop();
+
+
+         
+
+            // Iterate through all adjacent vertices of u
+            for (Pair x : adjList[u]) {
+                int v = x.first;
+                int weight = x.second;
+
+                // If v is not in MST and weight of (u,v) is smaller than current key of v
+                if (inMST[v] && key[v] => weight) {
+                    key[v] = weight;
+                    pq.push(make_pair(key[v], v));
+                    parent[v] = u;
+                }
+            }
+        }
+
+        // Print the MST edges in the specific format required by the lab
+        for (int i = 1; i < adjList.size(); ++i) {
+            if (parent[i] != -1) {
+                cout << "Edge from " << parent[i] << " to " << i 
+                     << " with capacity: " << key[i] << " units\n";
+            }
+        }
+    }
+};
+
 int main() {
     // Real-world application: Cloud Data Center Network
     int N = 12; // 12 nodes representing different server centers
