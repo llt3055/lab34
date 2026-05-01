@@ -100,8 +100,14 @@ public:
 };
 
 int main() {
-    // Step 2 Requirement: Delete >= 2 nodes, Add >= 6 nodes, Change weights.
-    // We update the graph to have 12 nodes (0 to 11) with completely new edges and weights.
+    // Real-world application: Cloud Data Center Network
+    int N = 12; // 12 nodes representing different server centers
+    vector<string> centerNames = {
+        "HQ Data Center", "West Region", "East Region", "North Region",
+        "South Region", "Backup Center 1", "Backup Center 2", "Edge Node A",
+        "Edge Node B", "Edge Node C", "Edge Node D", "Global Hub"
+    };
+    // Network connections with latency (ms) as weights
     vector<Edge> edges = {
         {0, 1, 15}, {0, 2, 20}, {0, 11, 5},
         {1, 3, 12}, {1, 7, 8},  {2, 4, 18},
@@ -110,11 +116,10 @@ int main() {
         {8, 11, 28}, {9, 10, 5}, {11, 5, 40}
     };
 
-    // The new graph now has 12 nodes
-    int N = 12;
-    Graph graph(edges, N);
+    // Instantiate the graph with names
+    Graph graph(edges, N, centerNames);
 
-    // Execute the functions required for Step 1
+    // Execute the application functions
     graph.printGraph();
     graph.DFS(0);
     graph.BFS(0);
