@@ -11,6 +11,7 @@ struct Edge {
     int src, dest, weight;
 };
 
+// Pair definition from the lecture notes
 typedef pair<int, int> Pair;
 
 class Graph {
@@ -99,10 +100,14 @@ public:
 };
 
 int main() {
-    // Initial graph data provided in the lecture notes
+    // Step 2 Requirement: Delete >= 2 nodes, Add >= 6 nodes, Change weights.
+    // We update the graph to have 12 nodes (0 to 11) with completely new edges and weights.
     vector<Edge> edges = {
-        {0,1,12}, {0,2,8}, {0,3,21}, {2,3,6}, 
-        {2,6,2}, {5,6,6}, {4,5,9}, {2,4,4}, {2,5,5}
+        {0, 1, 15}, {0, 2, 20}, {0, 11, 5},
+        {1, 3, 12}, {1, 7, 8},  {2, 4, 18},
+        {2, 8, 10}, {3, 5, 25}, {4, 6, 22},
+        {5, 9, 14}, {6, 10, 16}, {7, 11, 30},
+        {8, 11, 28}, {9, 10, 5}, {11, 5, 40}
     };
 
     // The initial graph has 7 nodes (0 to 6)
