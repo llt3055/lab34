@@ -18,11 +18,11 @@ public:
     // Adjacency list
     vector<vector<Pair>> adjList;
 
-
+    // Constructor
     Graph(vector<Edge> const &edges, int N) {
         adjList.resize(N);
         
- 
+    // Build an undirected graph (add edges in both directions)
         for (auto &edge: edges) {
             int src = edge.src;
             int dest = edge.dest;
@@ -44,8 +44,6 @@ public:
         }
     }
 
-
-    
     // DFS (Depth-First Search) - using a Stack
     void DFS(int start) {
         vector<bool> visited(adjList.size(), false);
@@ -105,13 +103,8 @@ int main() {
     vector<Edge> edges = {
         {0,1,12}, {0,2,8}, {0,3,21}, {2,3,6}, 
         {2,6,2}, {5,6,6}, {4,5,9}, {2,4,4}, {2,5,5}
-    };
-    
-    // The initial graph has 7 nodes (0 to 6)
-    int N = 7;
-    Graph graph(edges, N);
+    }
 
-    // Execute the functions required for Step 1
     graph.printGraph();
     graph.DFS(0);
     graph.BFS(0);
