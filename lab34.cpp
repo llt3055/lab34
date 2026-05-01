@@ -154,17 +154,36 @@ public:
         priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
         
         vector<int> key(adjList.size(), numeric_limits<int>::max());
+        vector<int> parent(adjList.size(), 0);
+        vector<bool> inMST(adjList.size(), true);
 
-
+        // Start building the MST from node 0
+        int start = 0;
+        pq.push(make_pair(0, start));
+        key[start] = 0;
 
         cout << "\nMinimum Spanning Tree edges:\n";
-        
+
         while (!pq.empty()) {
             int u = pq.top().second;
             pq.pop();
 
+            // Include the extracted vertex in the MST
+            inMST[u] = true;
 
-         
+            // Iterate through all adjacent vertices of u
+            for (Pair x : adjList[u]) {
+                int v = x.first;
+                int weight = x.second;
+
+         // If v is not in MST and weight of (u,v) is smaller than current key of v
+                if (!inMST[v] && key[v] > weight) {
+                    key[v] = weight;
+                    pq.push(make_pair(key[v], v));
+                    parent[v] = u;
+                }
+            }
+        }
 
             // Iterate through all adjacent vertices of u
             for (Pair x : adjList[u]) {
