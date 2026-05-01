@@ -110,8 +110,8 @@ int main() {
         {8, 11, 28}, {9, 10, 5}, {11, 5, 40}
     };
 
-    // The initial graph has 7 nodes (0 to 6)
-    int N = 7;
+    // The new graph now has 12 nodes
+    int N = 12;
     Graph graph(edges, N);
 
     // Execute the functions required for Step 1
