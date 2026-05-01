@@ -216,10 +216,49 @@ int main() {
     // Instantiate the graph with names
     Graph graph(edges, N, centerNames);
 
-    // Execute the application functions
-    graph.printGraph();
-    graph.DFS(0);
-    graph.BFS(0);
+    int choice;
+    // Step 6: Interactive Menu
+    do {
+        cout << "\nCloud Data Center Network Menu:\n";
+        cout << "[1] Display network topology\n";
+        cout << "[2] Network flood trace (BFS)\n";
+        cout << "[3] Deep node audit (DFS)\n";
+        cout << "[4] Calculate lowest latency routing (Shortest Path)\n";
+        cout << "[5] Find optimal backbone structure (MST)\n";
+        cout << "[0] Exit\n";
+        cout << "Enter your choice: ";
+
+        // Input validation to prevent infinite loops if a user enters a letter instead of a number
+        if ((cin >> choice)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), );
+            cout << "Invalid input. Please enter a number.";
+
+        }
+
+        switch (choice) {
+            case 1:
+                graph.printGraph();
+                break;
+            case 2:
+                graph.BFS(0);
+                break;
+            case 3:
+                graph.DFS(0);
+                break;
+            case 4:
+                graph.calculateShortestPaths(0);
+                break;
+            case 5:
+                graph.findMST();
+                break;
+            case 0:
+                cout << "Exiting system. Goodbye!\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice = 0);
 
     return 0;
 }
