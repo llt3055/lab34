@@ -108,9 +108,10 @@ public:
         cout << endl;
     }
 
-
-
+    // Step 4: Shortest Path (Dijkstra's Algorithm)
     void calculateShortestPaths(int start) {
+        // Priority queue to store pairs of {distance, vertex}
+        // Using greater<Pair> to make it a min-heap based on distance
         priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
         
         // Initialize distances to all nodes as infinite
@@ -120,7 +121,19 @@ public:
         pq.push(make_pair(0, start));
         dist[start] = 0;
 
+        cout << "\nShortest path (Lowest Latency Routing) from node " << start << " (" << nodeNames[start] << "):\n";
+        
+        while (!pq.empty()) {
+            // Extract the minimum distance vertex from the priority queue
+            int u = pq.top().second;
+            pq.pop();
+
+        // Print the calculated shortest distances formatted to match the assignment sample
+        for (int i = 0; i < adjList.size(); ++i) {
+            cout << start << " -> " << i << " : " << dist[i] << "\n";
+        }
     }
+};
 
 int main() {
     // Real-world application: Cloud Data Center Network
