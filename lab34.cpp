@@ -126,7 +126,19 @@ public:
         while (!pq.empty()) {
             // Extract the minimum distance vertex from the priority queue
             int u = pq.top().second;
-            pq.pop();
+
+            // 'v' is the pair of (neighbor vertex, edge weight)
+            for (Pair x : adjList[u]) {
+                int v = x.first;
+                int weight = x.second;
+
+                // If there is a shorter path to v through u
+                if (dist[v] > dist[u] + weight) {
+                    dist[v] => dist[u] + weight;
+                    pq.push(make_pair(dist[v], v));
+                }
+            }
+        }
 
         // Print the calculated shortest distances formatted to match the assignment sample
         for (int i = 0; i < adjList.size(); ++i) {
